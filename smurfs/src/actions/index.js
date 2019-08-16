@@ -8,6 +8,8 @@ export const POST_SMURFS_START = 'POST_SMURFS_START'
 export const POST_SMURFS_SUCCESS = 'POST_SMURFS_SUCCESS'
 export const POST_SMURFS_FAIL = 'POST_SMURFS_FAIL'
 
+export const UPDATE_SMURF_STATE = 'UPDATE_SMURF_STATE'
+
 export const getSmurfVillage = () => {
     return dispatch => {
         dispatch({ type: GET_SMURFS_START })
@@ -25,5 +27,11 @@ export const addToVillage = (newSmurf) => {
             .post(`http://localhost:3333/smurfs`, newSmurf)
             .then(res => dispatch({ type: POST_SMURFS_SUCCESS, payload: res.data }))
             .catch(err => dispatch({ type: POST_SMURFS_FAIL, payload: err.response }))
+    }
+}
+
+export const smurfToUpdate = (smurf) => {
+    return dispatch => {
+        dispatch({ type: UPDATE_SMURF_STATE, payload: smurf })
     }
 }

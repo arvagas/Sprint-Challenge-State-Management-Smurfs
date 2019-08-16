@@ -5,18 +5,20 @@ import {
     POST_SMURFS_START,
     POST_SMURFS_SUCCESS,
     POST_SMURFS_FAIL,
+    UPDATE_SMURF_STATE,
 }
 from '../actions'
 
 const initialState = {
     smurfs: [
         {
-            id: 0,
+            id: 999,
             name: 'Arvin',
             age: '210',
             height: '5.5cm'
         }
     ],
+    updateSmurf: {},
     error: '',
     callingAPI: false
 }
@@ -60,6 +62,11 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 callingAPI: false,
                 error: `${action.payload.status} ${action.payload.statusText}`
+            }
+        case UPDATE_SMURF_STATE :
+            return {
+                ...state,
+                updateSmurf: action.payload
             }
         default :
             return state
