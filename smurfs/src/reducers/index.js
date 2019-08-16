@@ -9,6 +9,9 @@ import {
     PUT_SMURFS_START,
     PUT_SMURFS_SUCCESS,
     PUT_SMURFS_FAIL,
+    DELETE_SMURFS_START,
+    DELETE_SMURFS_SUCCESS,
+    DELETE_SMURFS_FAIL,
 }
 from '../actions'
 
@@ -94,6 +97,27 @@ export const reducer = (state = initialState, action) => {
                 error: ''
             }
         case PUT_SMURFS_FAIL :
+            return {
+                ...state,
+                callingAPI: false,
+                error: `${action.payload.status} ${action.payload.statusText}`
+            }
+
+        // @@@@@@@@@@ DELETE
+        case DELETE_SMURFS_START :
+            return {
+                ...state,
+                callingAPI: true,
+                error: ''
+            }
+        case DELETE_SMURFS_SUCCESS :
+            return {
+                ...state,
+                smurfs: action.payload,
+                callingAPI: false,
+                error: ''
+            }
+        case DELETE_SMURFS_FAIL :
             return {
                 ...state,
                 callingAPI: false,
