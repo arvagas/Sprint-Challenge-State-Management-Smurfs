@@ -25,8 +25,8 @@ const initialState = {
         }
     ],
     updateSmurf: {},
-    error: '',
-    callingAPI: false
+    callingAPI: false,
+    error: ''
 }
 
 export const reducer = (state = initialState, action) => {
@@ -35,6 +35,7 @@ export const reducer = (state = initialState, action) => {
         case GET_SMURFS_START :
             return {
                 ...state,
+                updateSmurf: {},
                 callingAPI: true,
                 error: ''
             }
@@ -56,6 +57,7 @@ export const reducer = (state = initialState, action) => {
         case POST_SMURFS_START :
             return {
                 ...state,
+                updateSmurf: {},
                 callingAPI: true,
                 error: ''
             }
@@ -85,6 +87,7 @@ export const reducer = (state = initialState, action) => {
         case PUT_SMURFS_START :
             return {
                 ...state,
+                updateSmurf: {},
                 callingAPI: true,
                 error: ''
             }
@@ -92,7 +95,6 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 smurfs: action.payload,
-                updateSmurf: {},
                 callingAPI: false,
                 error: ''
             }

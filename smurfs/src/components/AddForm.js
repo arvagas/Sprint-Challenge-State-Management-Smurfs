@@ -4,17 +4,19 @@ import { connect, useSelector } from 'react-redux'
 
 import { getSmurfVillage, addToVillage, editVillager } from '../actions'
 
-const JSXForm = ({ addToVillage, getSmurfVillage, editVillager }) => {
+const AddForm = ({ addToVillage, getSmurfVillage, editVillager }) => {
     const updateSmurf = useSelector(state => state.updateSmurf)
+
+    const initVal = {
+        id: updateSmurf.id !== undefined ? updateSmurf.id : '',
+        name: updateSmurf.name !== undefined ? updateSmurf.name : '',
+        age: updateSmurf.age !== undefined ? updateSmurf.age : '',
+        height: updateSmurf.height !== undefined ? updateSmurf.height : ''
+    }
 
     return (
         <Formik
-            initialValues={{
-                id: updateSmurf.id,
-                name: updateSmurf.name,
-                age: updateSmurf.age,
-                height: updateSmurf.height
-            }}
+            initialValues={initVal}
             onSubmit={(values, { resetForm, setSubmitting }) => {
                 addToVillage(values)
                 resetForm()
@@ -51,24 +53,5 @@ const JSXForm = ({ addToVillage, getSmurfVillage, editVillager }) => {
         />
     )
 }
-
-const AddForm = withFormik({
-    mapPropsToValue({ id, name, age, height }) {
-        return {
-            id: id || '',
-            name: name || '',
-            age: age || '',
-            height: height || ''
-        }
-    },
-
-    // validationSchema
-
-    handleSubmit(values, { props, resetForm, setSubmitting }) {
-        props.addToVillage(values)
-        resetForm()
-        setSubmitting(false)
-    }
-})(JSXForm)
 
 export default connect(null, { getSmurfVillage, addToVillage, editVillager })(AddForm)
