@@ -1,14 +1,23 @@
 import React from "react"
+import { useSelector } from 'react-redux'
+
+import AddForm from './AddForm'
+import SmurfCard from './SmurfCard'
+
 import "./App.css"
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>
+const App = () => {
+  const smurfs = useSelector(state => state)
+  console.log(smurfs)
 
-      </div>
-    )
-  }
+  return (
+    <div>
+      <AddForm />
+      {smurfs.map(smurf => (
+        <SmurfCard key={smurf.id} smurf={smurf}/>
+      ))}
+    </div>
+  )
 }
 
 export default App
