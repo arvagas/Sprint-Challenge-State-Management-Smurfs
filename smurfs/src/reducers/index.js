@@ -6,6 +6,9 @@ import {
     POST_SMURFS_SUCCESS,
     POST_SMURFS_FAIL,
     UPDATE_SMURF_STATE,
+    PUT_SMURFS_START,
+    PUT_SMURFS_SUCCESS,
+    PUT_SMURFS_FAIL,
 }
 from '../actions'
 
@@ -25,6 +28,7 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
+        // @@@@@@@@@@ GET
         case GET_SMURFS_START :
             return {
                 ...state,
@@ -44,12 +48,15 @@ export const reducer = (state = initialState, action) => {
                 callingAPI: false,
                 error: `${action.payload.status} ${action.payload.statusText}`
             }
+
+        // @@@@@@@@@@ POST
         case POST_SMURFS_START :
             return {
                 ...state,
                 callingAPI: true,
                 error: ''
             }
+
         case POST_SMURFS_SUCCESS :
             return {
                 ...state,
@@ -63,10 +70,34 @@ export const reducer = (state = initialState, action) => {
                 callingAPI: false,
                 error: `${action.payload.status} ${action.payload.statusText}`
             }
+
+        // @@@@@@@@@@ UPDATE SMURF STATE
         case UPDATE_SMURF_STATE :
             return {
                 ...state,
                 updateSmurf: action.payload
+            }
+
+        // @@@@@@@@@@ PUT
+        case PUT_SMURFS_START :
+            return {
+                ...state,
+                callingAPI: true,
+                error: ''
+            }
+        case PUT_SMURFS_SUCCESS :
+            return {
+                ...state,
+                smurfs: action.payload,
+                updateSmurf: {},
+                callingAPI: false,
+                error: ''
+            }
+        case PUT_SMURFS_FAIL :
+            return {
+                ...state,
+                callingAPI: false,
+                error: `${action.payload.status} ${action.payload.statusText}`
             }
         default :
             return state

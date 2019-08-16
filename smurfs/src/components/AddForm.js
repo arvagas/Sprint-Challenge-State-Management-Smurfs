@@ -2,9 +2,9 @@ import React from 'react'
 import { Formik, Form, Field, withFormik } from 'formik'
 import { connect, useSelector } from 'react-redux'
 
-import { getSmurfVillage, addToVillage } from '../actions'
+import { getSmurfVillage, addToVillage, editVillager } from '../actions'
 
-const JSXForm = ({ getSmurfVillage }) => {
+const JSXForm = ({ getSmurfVillage, editVillager }) => {
     const updateSmurf = useSelector(state => state.updateSmurf)
 
     return (
@@ -39,7 +39,7 @@ const JSXForm = ({ getSmurfVillage }) => {
                     </label>
 
                     <button type='submit'>Add to Village</button>
-                    <button type='button'>Update Villager</button>
+                    <button type='button' onClick={() => editVillager(props.values)}>Update Villager</button>
                     <button type='button' onClick={() => getSmurfVillage()}>See Village</button>
                 </Form>
             )}
@@ -66,4 +66,4 @@ const AddForm = withFormik({
     }
 })(JSXForm)
 
-export default connect(null, { getSmurfVillage, addToVillage })(AddForm)
+export default connect(null, { getSmurfVillage, addToVillage, editVillager })(AddForm)
