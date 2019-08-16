@@ -31,7 +31,7 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
-        // @@@@@@@@@@ GET
+        // @@@@@@@@@@ GET REQUEST @@@@@@@@@@
         case GET_SMURFS_START :
             return {
                 ...state,
@@ -52,7 +52,7 @@ export const reducer = (state = initialState, action) => {
                 error: `${action.payload.status} ${action.payload.statusText}`
             }
 
-        // @@@@@@@@@@ POST
+        // @@@@@@@@@@ POST REQUEST @@@@@@@@@@
         case POST_SMURFS_START :
             return {
                 ...state,
@@ -74,14 +74,14 @@ export const reducer = (state = initialState, action) => {
                 error: `${action.payload.status} ${action.payload.statusText}`
             }
 
-        // @@@@@@@@@@ UPDATE SMURF STATE
+        // @@@@@@@@@@ UPDATE SMURF STATE @@@@@@@@@@
         case UPDATE_SMURF_STATE :
             return {
                 ...state,
                 updateSmurf: action.payload
             }
 
-        // @@@@@@@@@@ PUT
+        // @@@@@@@@@@ PUT REQUEST @@@@@@@@@@
         case PUT_SMURFS_START :
             return {
                 ...state,
@@ -103,10 +103,11 @@ export const reducer = (state = initialState, action) => {
                 error: `${action.payload.status} ${action.payload.statusText}`
             }
 
-        // @@@@@@@@@@ DELETE
+        // @@@@@@@@@@ DELETE REQUEST @@@@@@@@@@
         case DELETE_SMURFS_START :
             return {
                 ...state,
+                updateSmurf: {},
                 callingAPI: true,
                 error: ''
             }

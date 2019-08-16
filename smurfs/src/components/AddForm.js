@@ -4,7 +4,7 @@ import { connect, useSelector } from 'react-redux'
 
 import { getSmurfVillage, addToVillage, editVillager } from '../actions'
 
-const JSXForm = ({ getSmurfVillage, editVillager }) => {
+const JSXForm = ({ addToVillage, getSmurfVillage, editVillager }) => {
     const updateSmurf = useSelector(state => state.updateSmurf)
 
     return (
@@ -15,9 +15,14 @@ const JSXForm = ({ getSmurfVillage, editVillager }) => {
                 age: updateSmurf.age,
                 height: updateSmurf.height
             }}
+            onSubmit={(values, { resetForm, setSubmitting }) => {
+                addToVillage(values)
+                resetForm()
+                setSubmitting(false)
+            }}
             enableReinitialize={true}
             render={props => (
-                <Form>
+                <Form onSubmit={props.handleSubmit}>
                     <label>
                         Id:
                         <Field type='text' name='id' placeholder='' value={props.values.id} disabled/>
