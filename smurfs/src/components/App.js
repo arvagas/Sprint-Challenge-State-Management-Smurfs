@@ -7,12 +7,15 @@ import SmurfCard from './SmurfCard'
 import "./App.css"
 
 const App = () => {
-  const smurfs = useSelector(state => state)
-  console.log(smurfs)
+  const smurfs = useSelector(state => state.smurfs)
+  const error = useSelector(state => state.error)
 
   return (
     <div>
       <AddForm />
+      
+      {error !== '' ? <h2>{error}</h2> : ''}
+
       {smurfs.map(smurf => (
         <SmurfCard key={smurf.id} smurf={smurf}/>
       ))}
