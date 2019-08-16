@@ -50,7 +50,7 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 callingAPI: false,
-                error: `${action.payload.status} ${action.payload.statusText}`
+                error: `${action.payload.status} ${action.payload.statusText} - ${action.payload.data.Error}`
             }
 
         // @@@@@@@@@@ POST REQUEST @@@@@@@@@@
@@ -73,7 +73,7 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 callingAPI: false,
-                error: `${action.payload.status} ${action.payload.statusText}`
+                error: `${action.payload.status} ${action.payload.statusText} - ${action.payload.data.Error}`
             }
 
         // @@@@@@@@@@ UPDATE SMURF STATE @@@@@@@@@@
@@ -102,7 +102,7 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 callingAPI: false,
-                error: `${action.payload.status} ${action.payload.statusText}`
+                error: `${action.payload.status} ${action.payload.statusText} - ${action.payload.data.Error}`
             }
 
         // @@@@@@@@@@ DELETE REQUEST @@@@@@@@@@
@@ -124,7 +124,7 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 callingAPI: false,
-                error: `${action.payload.status} ${action.payload.statusText}`
+                error: `${action.payload.status} ${action.payload.statusText} - ${action.payload.data.Error}`
             }
         default :
             return state
