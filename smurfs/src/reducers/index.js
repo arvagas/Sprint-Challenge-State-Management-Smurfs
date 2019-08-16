@@ -1,7 +1,10 @@
 import {
     FETCH_SMURFS_START,
     FETCH_SMURFS_SUCCESS,
-    FETCH_SMURFS_FAIL   
+    FETCH_SMURFS_FAIL,
+    POST_SMURFS_START,
+    POST_SMURFS_SUCCESS,
+    POST_SMURFS_FAIL,
 }
 from '../actions'
 
@@ -15,7 +18,7 @@ const initialState = {
         }
     ],
     error: '',
-    isFetching: false
+    callingAPI: false
 }
 
 export const reducer = (state = initialState, action) => {
@@ -23,20 +26,39 @@ export const reducer = (state = initialState, action) => {
         case FETCH_SMURFS_START :
             return {
                 ...state,
-                isFetching: true,
+                callingAPI: true,
                 error: ''
             }
         case FETCH_SMURFS_SUCCESS :
             return {
                 ...state,
                 smurfs: action.payload,
-                isFetching: false,
+                callingAPI: false,
                 error: ''
             }
         case FETCH_SMURFS_FAIL :
             return {
                 ...state,
-                isFetching: false,
+                callingAPI: false,
+                error: `${action.payload.status} ${action.payload.statusText}`
+            }
+        case POST_SMURFS_START :
+            return {
+                ...state,
+                callingAPI: true,
+                error: ''
+            }
+        case POST_SMURFS_SUCCESS :
+            return {
+                ...state,
+                smurfs: action.payload,
+                callingAPI: false,
+                error: ''
+            }
+        case POST_SMURFS_FAIL :
+            return {
+                ...state,
+                callingAPI: false,
                 error: `${action.payload.status} ${action.payload.statusText}`
             }
         default :

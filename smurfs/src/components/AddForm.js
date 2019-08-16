@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Field, withFormik } from 'formik'
 import { connect } from 'react-redux'
 
-import { getSmurfVillage } from '../actions'
+import { getSmurfVillage, addToVillage } from '../actions'
 
 const JSXForm = ({ getSmurfVillage }) => {
     return (
@@ -40,9 +40,10 @@ const AddForm = withFormik({
     // validationSchema
 
     handleSubmit(values, { props, resetForm, setSubmitting }) {
+        props.addToVillage(values)
         resetForm()
         setSubmitting(false)
     }
 })(JSXForm)
 
-export default connect(null, { getSmurfVillage })(AddForm)
+export default connect(null, { getSmurfVillage, addToVillage })(AddForm)
