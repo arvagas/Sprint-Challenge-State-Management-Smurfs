@@ -1,0 +1,4 @@
+[build]
+base = "smurfs/"
+publish = "smurfs/build/"
+command = "yarn build"
